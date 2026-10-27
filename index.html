@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ملتقى شباب الاعلام | VIP Smart Menu</title>
+    <title>   مقهى شباب الاعلام الرياضي| VIP Luxury Menu</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Canvas Confetti -->
@@ -18,10 +18,10 @@
             theme: {
                 extend: {
                     colors: {
-                        gold: { DEFAULT: '#D4AF37', light: '#F3E5AB', dark: '#AA7C11' },
-                        darkbg: '#0F0F0F',
-                        cardbg: '#181818',
-                        accent: '#222222'
+                        gold: { DEFAULT: '#D4AF37', light: '#FDF0A6', dark: '#996515' },
+                        darkbg: '#0A0A0A',
+                        cardbg: '#141414',
+                        accent: '#1F1F1F'
                     },
                     fontFamily: { tajawal: ['Tajawal', 'sans-serif'] }
                 }
@@ -29,117 +29,133 @@
         }
     </script>
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #0F0F0F; color: #E0E0E0; -webkit-tap-highlight-color: transparent; }
-        .gold-gradient { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); }
-        .gold-text { background: linear-gradient(135deg, #FFF099 0%, #D4AF37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glass { background: rgba(24, 24, 24, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(212, 175, 55, 0.15); }
+        body { font-family: 'Tajawal', sans-serif; background-color: #0A0A0A; color: #E5E5E5; -webkit-tap-highlight-color: transparent; }
+        
+        /* Premium Gradients & Shimmer */
+        .gold-gradient { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%); }
+        .gold-gradient-dark { background: linear-gradient(135deg, #D4AF37 0%, #8A6508 100%); }
+        .gold-text { background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #996515 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Glassmorphism Ultra */
+        .glass-header { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .glass-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        }
+        .glow-active { animation: pulseGlow 3s infinite ease-in-out; }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .active-cat { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%) !important; color: #0F0F0F !important; font-weight: 900; }
+        .active-cat { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%) !important; color: #0A0A0A !important; font-weight: 900; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
     </style>
 </head>
-<body class="bg-darkbg text-gray-100 min-h-screen pb-24 md:pb-12 select-none">
+<body class="bg-darkbg text-gray-100 min-h-screen pb-24 md:pb-12 select-none overflow-x-hidden">
 
-    <!-- Top Sticky Bar / Header -->
-    <header class="sticky top-0 z-40 glass px-4 py-3 shadow-2xl">
+    <!-- Top Luxury Header -->
+    <header class="sticky top-0 z-40 glass-header px-4 py-3 shadow-2xl">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-darkbg font-bold shadow-md shadow-gold/20">
-                    <i class="fas fa-crown text-base"></i>
+                <div class="w-11 h-11 rounded-2xl gold-gradient-dark flex items-center justify-center text-darkbg font-bold shadow-lg shadow-gold/20 border border-gold/40">
+                    <i class="fas fa-crown text-lg text-yellow-200"></i>
                 </div>
                 <div>
-                    <h1 id="cafe-title" class="text-base md:text-lg font-black gold-text cursor-pointer leading-tight">ملتقى شباب الاعلام</h1>
-                    <span class="text-[10px] text-gray-400 tracking-wider block">التجربة الرقمية الفاخرة</span>
+                    <h1 id="cafe-title" class="text-base md:text-xl font-black gold-text cursor-pointer leading-tight tracking-wide">  مقهى شباب الاعلام الرياضي   </h1>
+                    <span class="text-[10px] text-gold/80 tracking-widest block font-bold">VIP DIGITAL EXPERIENCE</span>
                 </div>
             </div>
             
-            <button type="button" onclick="toggleCart()" class="relative bg-cardbg border border-gold/30 px-3 py-2 rounded-xl flex items-center gap-2 text-gold hover:border-gold active:scale-95 transition">
-                <i class="fas fa-shopping-bag text-sm"></i>
-                <span id="cart-total-badge" class="text-xs font-bold hidden sm:inline">0 د.ع</span>
-                <span id="cart-count" class="bg-red-600 text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center shadow">0</span>
+            <button type="button" onclick="toggleCart()" class="relative bg-cardbg border border-gold/40 px-3.5 py-2 rounded-2xl flex items-center gap-2 text-gold hover:border-gold active:scale-95 transition shadow-lg shadow-gold/5">
+                <i class="fas fa-shopping-bag text-base"></i>
+                <span id="cart-total-badge" class="text-xs font-black hidden sm:inline gold-text">0 د.ع</span>
+                <span id="cart-count" class="bg-gradient-to-r from-red-600 to-red-500 text-white text-[10px] font-black rounded-full w-5 h-5 flex items-center justify-center shadow-md border border-red-400">0</span>
             </button>
         </div>
     </header>
 
-    <!-- Customer Main View -->
-    <main id="customer-view" class="container mx-auto px-3 md:px-6 py-4">
+    <!-- Customer View -->
+    <main id="customer-view" class="container mx-auto px-3 md:px-6 py-4 max-w-6xl">
         
         <!-- Search & Filter Controls -->
-        <div class="mb-5 space-y-3 max-w-2xl mx-auto">
+        <div class="mb-6 space-y-4 max-w-2xl mx-auto">
             <div class="relative">
-                <i class="fas fa-search absolute right-3.5 top-3.5 text-gray-500 text-sm"></i>
-                <input type="text" id="search-input" oninput="filterMenu()" placeholder="ابحث عن مشروب، أركيلة، وجبة..." class="w-full bg-cardbg border border-gray-800 rounded-2xl py-3 pr-10 pl-4 text-xs md:text-sm text-white focus:border-gold outline-none transition placeholder-gray-500 shadow-inner">
+                <i class="fas fa-search absolute right-4 top-3.5 text-gold/60 text-sm"></i>
+                <input type="text" id="search-input" oninput="filterMenu()" placeholder="ابحث عن مشروبك الفاخر، الأركيلة، أو הوجبات..." class="w-full bg-cardbg/80 border border-gray-800/80 rounded-2xl py-3 pr-11 pl-4 text-xs md:text-sm text-white focus:border-gold outline-none transition placeholder-gray-500 shadow-2xl backdrop-blur-md">
             </div>
 
             <!-- Categories Horizontal Slider -->
-            <div class="flex overflow-x-auto gap-2 py-1 no-scrollbar" id="categories-container">
-                <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-4 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-md">✨ الكل</button>
-                <button type="button" onclick="setCategory('hot', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold">☕ ساخنة</button>
-                <button type="button" onclick="setCategory('cold', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold">🍹 باردة</button>
-                <button type="button" onclick="setCategory('pastry', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold">🥐 معجنات</button>
-                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold">🍔 وجبات</button>
-                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold">💨 أراكيل VIP</button>
+            <div class="flex overflow-x-auto gap-2.5 py-1.5 no-scrollbar" id="categories-container">
+                <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition">✨ الكل</button>
+                <button type="button" onclick="setCategory('hot', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">☕ مشروبات ساخنة</button>
+                <button type="button" onclick="setCategory('cold', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹 عصائر وبارد</button>
+                <button type="button" onclick="setCategory('pastry', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🥐 حلويات ومعجنات</button>
+                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍔 وجبات خاصة</button>
+                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">💨 أراكيل VIP</button>
             </div>
         </div>
 
-        <!-- Menu Dynamic Container (Cards Layout) -->
-        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-            <!-- Items injected here -->
+        <!-- Menu Dynamic Grid -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-5">
+            <!-- Items Injected Here -->
         </div>
     </main>
 
-    <!-- Mobile Bottom Fixed Bar for Rapid Checkout -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-cardbg/95 border-t border-gold/20 backdrop-blur-lg px-4 py-3 shadow-2xl flex items-center justify-between">
+    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-cardbg/95 border-t border-gold/30 backdrop-blur-xl px-5 py-3 shadow-2xl flex items-center justify-between">
         <div>
-            <span class="text-[10px] text-gray-400 block">إجمالي السلة</span>
-            <span id="mobile-bar-total" class="text-sm font-black gold-text">0 د.ع</span>
+            <span class="text-[9px] text-gray-400 block tracking-wider uppercase">الإجمالي الكلي</span>
+            <span id="mobile-bar-total" class="text-base font-black gold-text">0 د.ع</span>
         </div>
-        <button type="button" onclick="toggleCart()" class="gold-gradient text-darkbg font-black px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-gold/20 active:scale-95 transition">
-            <i class="fas fa-shopping-basket"></i> مشاهدة السلة
+        <button type="button" onclick="toggleCart()" class="gold-gradient text-darkbg font-black px-6 py-2.5 rounded-2xl text-xs flex items-center gap-2 shadow-xl shadow-gold/20 active:scale-95 transition">
+            <i class="fas fa-shopping-basket text-sm"></i> عرض السلة
         </button>
     </div>
 
-    <!-- Live Order Tracking Banner for Customer -->
-    <div id="tracking-banner" class="fixed bottom-16 md:bottom-6 left-3 right-3 max-w-md mx-auto bg-cardbg border border-gold/40 p-3.5 rounded-2xl shadow-2xl z-30 hidden glass">
-        <div class="flex justify-between items-center mb-1.5">
-            <span class="text-xs text-gold font-bold flex items-center gap-1.5"><i class="fas fa-sync fa-spin text-[10px]"></i> حالة الطلب المباشرة</span>
-            <span id="track-table" class="text-[11px] text-gray-400">طاولة --</span>
+    <!-- Live Order Tracking Banner -->
+    <div id="tracking-banner" class="fixed bottom-16 md:bottom-6 left-3 right-3 max-w-md mx-auto bg-cardbg/90 border border-gold/40 p-4 rounded-2xl shadow-2xl z-30 hidden glass-card glow-active">
+        <div class="flex justify-between items-center mb-2">
+            <span class="text-xs text-gold font-bold flex items-center gap-2"><i class="fas fa-circle-notch fa-spin text-xs"></i> حالة الطلب المباشرة</span>
+            <span id="track-table" class="text-xs text-gray-400 font-bold">طاولة --</span>
         </div>
-        <div class="w-full bg-gray-800 rounded-full h-1.5 mb-2 overflow-hidden">
-            <div id="track-progress" class="gold-gradient h-full w-1/3 transition-all duration-500"></div>
+        <div class="w-full bg-gray-900 rounded-full h-2 mb-2 overflow-hidden border border-gray-800">
+            <div id="track-progress" class="gold-gradient h-full w-1/3 transition-all duration-700"></div>
         </div>
         <p id="track-status-text" class="text-xs font-bold text-center text-white">جاري إرسال الطلب للمطبخ...</p>
     </div>
 
-    <!-- Cart Modal (Bottom Drawer on Mobile, Centered Modal on PC) -->
-    <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-end sm:items-center justify-center">
-        <!-- ضفت هنا (pb-20) للموبايل حتى نرفع الزر ونبعده عن حقوق النتلفاي -->
-        <div class="bg-cardbg border-t sm:border border-gold/30 w-full sm:w-[420px] p-5 pb-20 sm:pb-5 rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl">
-            <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-3">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-shopping-bag text-gold text-base"></i>
-                    <h2 class="text-base font-bold gold-text">سلة الطلبات</h2>
+    <!-- Mobile Bottom Drawer Modal for Cart -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden z-50 flex items-end sm:items-center justify-center">
+        <div class="bg-cardbg border-t sm:border border-gold/40 w-full sm:w-[440px] p-6 pb-20 sm:pb-6 rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center border-b border-gray-800/80 pb-3 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl gold-gradient-dark flex items-center justify-center text-darkbg font-bold">
+                        <i class="fas fa-shopping-bag text-xs text-yellow-200"></i>
+                    </div>
+                    <h2 class="text-base font-black gold-text">سلة المشتريات</h2>
                 </div>
-                <button type="button" onclick="toggleCart()" class="text-gray-400 p-1 hover:text-white"><i class="fas fa-times text-lg"></i></button>
+                <button type="button" onclick="toggleCart()" class="text-gray-400 p-1.5 hover:text-white"><i class="fas fa-times text-lg"></i></button>
             </div>
 
-            <div id="cart-items" class="flex-1 overflow-y-auto space-y-2 pr-1 no-scrollbar mb-3">
-                <!-- Cart items injected here -->
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-2.5 pr-1 no-scrollbar mb-4">
+                <!-- Cart Items Injected Here -->
             </div>
 
-            <div class="border-t border-gray-800 pt-3 space-y-3">
-                <div class="flex justify-between text-sm font-bold text-white">
-                    <span>الإجمالي الكلي:</span>
-                    <span id="cart-total" class="gold-text">0 د.ع</span>
+            <div class="border-t border-gray-800/80 pt-4 space-y-3.5">
+                <div class="flex justify-between text-base font-black text-white">
+                    <span>مجموع الطلب:</span>
+                    <span id="cart-total" class="gold-text text-lg">0 د.ع</span>
                 </div>
 
                 <div class="space-y-2">
-                    <input type="number" id="table-number" placeholder="أدخل رقم الطاولة *" class="w-full bg-darkbg border border-gray-700 text-white rounded-xl py-2.5 px-3 text-center text-sm font-bold outline-none focus:border-gold">
-                    <input type="text" id="order-notes" placeholder="ملاحظات خاصة (مثلاً: سكر خفيف، بدون حامض...)" class="w-full bg-darkbg border border-gray-800 text-gray-300 rounded-xl py-2 px-3 text-xs outline-none focus:border-gold">
+                    <input type="number" id="table-number" placeholder="أدخل رقم الطاولة *" class="w-full bg-darkbg border border-gray-700/80 text-white rounded-2xl py-3 px-4 text-center text-sm font-bold outline-none focus:border-gold transition">
+                    <input type="text" id="order-notes" placeholder="ملاحظات خاصة (مثلاً: سكر خفيف، بدون حامض...)" class="w-full bg-darkbg border border-gray-800/80 text-gray-300 rounded-2xl py-2.5 px-4 text-xs outline-none focus:border-gold transition">
                 </div>
 
-                <button type="button" id="submit-btn" onclick="submitOrder(this)" class="w-full gold-gradient text-darkbg py-3 rounded-xl font-black text-xs md:text-sm shadow-lg shadow-gold/20 active:scale-95 transition">
-                    إرسال الطلب للمطبخ 🚀
+                <button type="button" id="submit-btn" onclick="submitOrder(this)" class="w-full gold-gradient text-darkbg py-3.5 rounded-2xl font-black text-sm shadow-xl shadow-gold/20 active:scale-95 transition">
+                    تأكيد وإرسال الطلب للمطبخ 🚀
                 </button>
             </div>
         </div>
@@ -155,8 +171,8 @@
             <button type="button" onclick="exitAdmin()" class="bg-red-600/20 border border-red-500/40 text-red-400 px-4 py-2 rounded-xl text-xs font-bold hover:bg-red-600 hover:text-white transition">خروج</button>
         </div>
 
-        <!-- Admin Tabs (Navigation) -->
-        <div class="flex gap-2 mb-6">
+        <!-- Admin Navigation Tabs -->
+        <div class="flex gap-2.5 mb-6">
             <button type="button" onclick="switchAdminTab('orders')" id="tab-btn-orders" class="admin-tab-btn bg-gold/10 border border-gold/30 text-gold px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-gold/5">
                 <i class="fas fa-fire"></i> الطلبات الحية
             </button>
@@ -165,59 +181,56 @@
             </button>
         </div>
 
-        <!-- TAB 1: Live Orders & Dashboard (Active by default) -->
+        <!-- TAB 1: Live Orders & Dashboard -->
         <div id="tab-content-orders" class="admin-tab-content block">
-            <!-- Dashboard Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                <div class="bg-cardbg border border-gray-800 p-3.5 rounded-2xl text-center">
+                <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl text-center">
                     <span class="text-[11px] text-gray-400 block mb-1">طلبات اليوم</span>
-                    <span id="stat-orders-count" class="text-xl font-bold text-white">0</span>
+                    <span id="stat-orders-count" class="text-xl font-black text-white">0</span>
                 </div>
-                <div class="bg-cardbg border border-gray-800 p-3.5 rounded-2xl text-center">
+                <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl text-center">
                     <span class="text-[11px] text-gray-400 block mb-1">إجمالي المبيعات</span>
-                    <span id="stat-total-sales" class="text-xl font-bold gold-text">0 د.ع</span>
+                    <span id="stat-total-sales" class="text-xl font-black gold-text">0 د.ع</span>
                 </div>
-                <div class="bg-cardbg border border-gray-800 p-3.5 rounded-2xl text-center">
+                <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl text-center">
                     <span class="text-[11px] text-gray-400 block mb-1">قيد التحضير</span>
-                    <span id="stat-pending-count" class="text-xl font-bold text-yellow-500">0</span>
+                    <span id="stat-pending-count" class="text-xl font-black text-yellow-500">0</span>
                 </div>
-                <div class="bg-cardbg border border-gray-800 p-3.5 rounded-2xl text-center">
+                <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl text-center">
                     <span class="text-[11px] text-gray-400 block mb-1">عناصر المنيو</span>
-                    <span id="stat-items-count" class="text-xl font-bold text-blue-400">0</span>
+                    <span id="stat-items-count" class="text-xl font-black text-blue-400">0</span>
                 </div>
             </div>
 
-            <!-- Live Kitchen Orders Grid View -->
+            <!-- Orders Grid -->
             <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="font-bold text-sm text-red-500 flex items-center gap-2"><i class="fas fa-fire animate-pulse"></i> الطلبات الحية (شاشة المطبخ)</h3>
-                    <span class="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-2.5 py-1 rounded-full"><i class="fas fa-broadcast-tower ml-1"></i> مباشر Live</span>
+                    <span class="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-3 py-1 rounded-full font-bold">مباشر Live</span>
                 </div>
                 
-                <!-- Orders Grid -->
                 <div id="orders-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-[65vh] overflow-y-auto pr-1 no-scrollbar pb-10">
                     <!-- Orders Injected Here -->
                 </div>
             </div>
         </div>
 
-        <!-- TAB 2: Menu Form Management (Hidden by default) -->
+        <!-- TAB 2: Menu Form Management -->
         <div id="tab-content-menu" class="admin-tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Add New Item Form -->
                 <div class="lg:col-span-5 bg-cardbg border border-gray-800 p-5 rounded-2xl h-fit">
                     <h3 class="font-bold mb-4 text-sm gold-text" id="form-title"><i class="fas fa-plus-circle ml-1"></i> إضافة منتج جديد للمنيو</h3>
                     <input type="hidden" id="edit-id">
                     <div class="space-y-4">
-                        <input type="text" id="item-name" placeholder="اسم المنتج (مثال: كابوتشينو VIP)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
-                        <textarea id="item-desc" placeholder="وصف المنتج والمكونات (اختياري)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition" rows="3"></textarea>
+                        <input type="text" id="item-name" placeholder="اسم المنتج" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
+                        <textarea id="item-desc" placeholder="وصف المنتج والمكونات" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition" rows="3"></textarea>
                         <div class="grid grid-cols-2 gap-3">
                             <input type="number" id="item-price" placeholder="السعر (د.ع)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
-                            <select id="item-category" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition cursor-pointer">
+                            <select id="item-category" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
                                 <option value="hot">مشروبات ساخنة</option>
-                                <option value="cold">مشروبات باردة</option>
-                                <option value="pastry">معجنات وحلويات</option>
-                                <option value="meals">وجبات طعام</option>
+                                <option value="cold">عصائر وبارد</option>
+                                <option value="pastry">حلويات ومعجنات</option>
+                                <option value="meals">وجبات خاصة</option>
                                 <option value="hookah">أراكيل VIP</option>
                             </select>
                         </div>
@@ -225,7 +238,6 @@
                     </div>
                 </div>
 
-                <!-- Current Menu Items List -->
                 <div class="lg:col-span-7 bg-cardbg border border-gray-800 p-5 rounded-2xl">
                     <h4 class="font-bold text-sm text-gray-300 mb-4"><i class="fas fa-boxes ml-1"></i> المنتجات الحالية في النظام</h4>
                     <div id="admin-items-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto pr-1 no-scrollbar">
@@ -263,7 +275,7 @@
         let activeOrderId = null;
         let previousOrdersCount = -1;
 
-        // Admin Tab Switching Logic
+        // Admin Tab Switching
         window.switchAdminTab = (tabName) => {
             document.querySelectorAll('.admin-tab-content').forEach(el => {
                 el.classList.add('hidden');
@@ -278,14 +290,14 @@
             document.getElementById('tab-btn-' + tabName).className = "admin-tab-btn bg-gold/10 border border-gold/30 text-gold px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-gold/5";
         };
 
-        // Triple Click Header Title to Open Admin
+        // Triple Click Secret Trigger
         let clickCount = 0, clickTimer;
         document.getElementById('cafe-title').addEventListener('click', () => {
             clickCount++;
             clearTimeout(clickTimer);
             clickTimer = setTimeout(() => clickCount = 0, 800);
             if(clickCount === 3) {
-                let pass = prompt("رمز دخول الكاشير والإدارة:");
+                let pass = prompt("رمز دخول الإدارة والكاشير:");
                 if(pass === "0000") {
                     document.getElementById('customer-view').classList.add('hidden');
                     document.getElementById('admin-view').classList.remove('hidden');
@@ -334,37 +346,37 @@
                 }
 
                 const statusBadges = {
-                    'pending': '<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-[10px] px-2 py-0.5 rounded-full shadow-inner">⏳ جديد</span>',
-                    'preparing': '<span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] px-2 py-0.5 rounded-full shadow-inner">👨‍🍳 تحضير</span>',
-                    'ready': '<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2 py-0.5 rounded-full shadow-inner">✅ جاهز</span>'
+                    'pending': '<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">⏳ جديد</span>',
+                    'preparing': '<span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">👨‍🍳 تحضير</span>',
+                    'ready': '<span class="bg-green-500/20 text-green-400 border border-green-500/30 text-[10px] px-2.5 py-0.5 rounded-full font-bold">✅ جاهز</span>'
                 };
 
                 ordersList.innerHTML += `
-                    <div class="bg-darkbg border border-gray-700/60 p-4 rounded-2xl relative hover:border-gold/40 transition-all text-xs flex flex-col justify-between shadow-lg h-full">
+                    <div class="bg-darkbg border border-gray-800 p-4 rounded-2xl relative hover:border-gold/40 transition text-xs flex flex-col justify-between shadow-xl">
                         <div>
                             <div class="flex justify-between items-start mb-3">
                                 <div>
-                                    <span class="text-[10px] text-gray-400 block mb-0.5">رقم الطاولة</span>
+                                    <span class="text-[10px] text-gray-400 block mb-0.5">طاولة</span>
                                     <span class="text-xl font-black text-white mr-1">#${order.table}</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     ${statusBadges[order.status || 'pending']}
-                                    <button type="button" onclick="window.deleteOrder('${id}')" class="bg-red-950/40 text-red-400 hover:text-red-300 hover:bg-red-900/50 p-1.5 rounded-lg transition"><i class="fas fa-trash"></i></button>
+                                    <button type="button" onclick="window.deleteOrder('${id}')" class="text-red-400 hover:text-red-300 p-1.5 rounded-lg"><i class="fas fa-trash"></i></button>
                                 </div>
                             </div>
 
-                            <ul class="text-xs space-y-1.5 bg-cardbg p-3 rounded-xl border border-gray-800/80 text-gray-200 mb-3 shadow-inner">
-                                ${order.items.map(i => `<li class="flex justify-between border-b border-gray-800/50 last:border-0 pb-1.5 last:pb-0"><span>• ${i.name}</span> <span class="font-black text-gold">x${i.qty}</span></li>`).join('')}
+                            <ul class="text-xs space-y-1.5 bg-cardbg p-3 rounded-xl border border-gray-800 text-gray-200 mb-3">
+                                ${order.items.map(i => `<li class="flex justify-between border-b border-gray-800/40 pb-1 last:border-0"><span>• ${i.name}</span> <span class="font-black gold-text">x${i.qty}</span></li>`).join('')}
                             </ul>
 
-                            ${order.notes ? `<p class="text-[11px] text-yellow-300 bg-yellow-950/30 border border-yellow-800/40 p-2.5 rounded-xl mb-3 shadow-inner"><i class="fas fa-comment-dots ml-1"></i> ${order.notes}</p>` : ''}
+                            ${order.notes ? `<p class="text-[11px] text-yellow-300 bg-yellow-950/20 border border-yellow-800/30 p-2.5 rounded-xl mb-3"><i class="fas fa-comment-dots ml-1"></i> ${order.notes}</p>` : ''}
                         </div>
 
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-800/60 mt-auto">
-                            <span class="font-black text-sm text-gold">${order.total} د.ع</span>
+                        <div class="flex justify-between items-center pt-3 border-t border-gray-800">
+                            <span class="font-black text-sm gold-text">${order.total} د.ع</span>
                             <div class="flex gap-2">
-                                <button type="button" onclick="window.updateOrderStatus('${id}', 'preparing')" class="bg-blue-600/20 text-blue-400 border border-blue-500/30 text-[11px] px-3 py-1.5 rounded-lg hover:bg-blue-600 hover:text-white transition font-bold">تحضير</button>
-                                <button type="button" onclick="window.updateOrderStatus('${id}', 'ready')" class="bg-green-600/20 text-green-400 border border-green-500/30 text-[11px] px-3 py-1.5 rounded-lg hover:bg-green-600 hover:text-white transition font-bold">تسليم</button>
+                                <button type="button" onclick="window.updateOrderStatus('${id}', 'preparing')" class="bg-blue-600/20 text-blue-300 border border-blue-500/30 text-[11px] px-3 py-1.5 rounded-xl hover:bg-blue-600 transition font-bold">تحضير</button>
+                                <button type="button" onclick="window.updateOrderStatus('${id}', 'ready')" class="bg-green-600/20 text-green-300 border border-green-500/30 text-[11px] px-3 py-1.5 rounded-xl hover:bg-green-600 transition font-bold">تسليم</button>
                             </div>
                         </div>
                     </div>
@@ -381,7 +393,7 @@
         };
 
         window.deleteOrder = async (id) => {
-            if(confirm("هل متأكد من حذف الطلب وإغلاقه؟")) await deleteDoc(doc(db, "orders", id));
+            if(confirm("حذف الطلب نهائياً؟")) await deleteDoc(doc(db, "orders", id));
         };
 
         // Render Cards List for Customer View
@@ -397,21 +409,21 @@
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500 text-xs">لا توجد عناصر مطابقة للبحث</div>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 text-xs font-bold">لا توجد عناصر مطابقة للبحث حالياً</div>`;
                 return;
             }
 
             filtered.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
                 grid.innerHTML += `
-                    <div class="bg-cardbg border border-gray-800/80 rounded-2xl p-3 md:p-4 flex justify-between items-center hover:border-gold/40 transition shadow-md active:scale-[0.99] group">
-                        <div class="flex-1 pl-2">
-                            <h3 class="font-bold text-white text-xs md:text-sm mb-0.5 group-hover:text-gold transition">${item.name}</h3>
-                            <p class="text-gray-400 text-[10px] md:text-xs line-clamp-2 mb-2 leading-relaxed">${item.desc || 'طعم مميز وإعداد احترافي'}</p>
-                            <span class="text-gold font-bold text-xs bg-gold/10 border border-gold/20 px-2.5 py-0.5 rounded-md">${item.price} د.ع</span>
+                    <div class="glass-card rounded-2xl p-3.5 md:p-4 flex justify-between items-center transition-all duration-300 active:scale-[0.98] group">
+                        <div class="flex-1 pl-3">
+                            <h3 class="font-bold text-white text-xs md:text-sm mb-1 group-hover:text-gold transition-colors">${item.name}</h3>
+                            <p class="text-gray-400 text-[10px] md:text-xs line-clamp-2 mb-2 leading-relaxed">${item.desc || 'طعم فاخر ومعد بأعلى معايير الجودة'}</p>
+                            <span class="text-gold font-black text-xs bg-gold/10 border border-gold/20 px-3 py-1 rounded-lg inline-block shadow-sm">${item.price} د.ع</span>
                         </div>
-                        <button type="button" onclick="addToCart('${item.id}', '${safeName}', ${item.price})" class="gold-gradient text-darkbg w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center font-bold text-xs shadow-md shadow-gold/10 active:scale-90 transition">
-                            <i class="fas fa-plus"></i>
+                        <button type="button" onclick="addToCart('${item.id}', '${safeName}', ${item.price})" class="gold-gradient text-darkbg w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center font-black text-xs shadow-lg shadow-gold/10 active:scale-90 transition hover:scale-105">
+                            <i class="fas fa-plus text-sm"></i>
                         </button>
                     </div>
                 `;
@@ -420,14 +432,14 @@
 
         window.setCategory = (cat, btn) => {
             window.currentCategory = cat;
-            document.querySelectorAll('.cat-btn').forEach(b => b.className = "cat-btn bg-cardbg border border-gray-800 text-gray-300 px-4 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold");
-            btn.className = "cat-btn active-cat px-4 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-md";
+            document.querySelectorAll('.cat-btn').forEach(b => b.className = "cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition");
+            btn.className = "cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition";
             window.renderMenu();
         };
 
         window.filterMenu = () => window.renderMenu();
 
-        // Admin Management Functions
+        // Save Menu Item
         window.saveItem = async () => {
             const id = document.getElementById('edit-id').value;
             const name = document.getElementById('item-name').value;
@@ -476,11 +488,11 @@
                     <div class="flex justify-between items-center bg-darkbg p-3 rounded-xl border border-gray-800 text-xs hover:border-gold/30 transition">
                         <div>
                             <span class="font-bold text-white block mb-0.5">${item.name}</span>
-                            <span class="text-gold font-bold">${item.price} د.ع</span>
+                            <span class="gold-text font-bold">${item.price} د.ع</span>
                         </div>
                         <div class="flex gap-2 bg-cardbg p-1 rounded-lg border border-gray-800">
-                            <button type="button" onclick="editItem('${item.id}', '${safeName}', '${safeDesc}', ${item.price}, '${item.category}')" class="text-blue-400 hover:text-blue-300 hover:bg-blue-900/30 p-1.5 rounded transition"><i class="fas fa-edit"></i></button>
-                            <button type="button" onclick="deleteItem('${item.id}')" class="text-red-400 hover:text-red-300 hover:bg-red-900/30 p-1.5 rounded transition"><i class="fas fa-trash"></i></button>
+                            <button type="button" onclick="editItem('${item.id}', '${safeName}', '${safeDesc}', ${item.price}, '${item.category}')" class="text-blue-400 p-1.5 rounded"><i class="fas fa-edit"></i></button>
+                            <button type="button" onclick="deleteItem('${item.id}')" class="text-red-400 p-1.5 rounded"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -513,20 +525,20 @@
             cartDiv.innerHTML = '';
 
             if(window.cart.length === 0) {
-                cartDiv.innerHTML = `<p class="text-center text-gray-500 text-xs py-6">السلة فارغة حالياً</p>`;
+                cartDiv.innerHTML = `<p class="text-center text-gray-500 text-xs py-8 font-bold">السلة فارغة حالياً</p>`;
                 return;
             }
 
             window.cart.forEach(item => {
                 cartDiv.innerHTML += `
-                    <div class="flex justify-between items-center bg-darkbg p-2.5 rounded-xl border border-gray-800 text-xs">
+                    <div class="flex justify-between items-center bg-darkbg p-3 rounded-2xl border border-gray-800 text-xs shadow-inner">
                         <div>
-                            <h4 class="font-bold text-white">${item.name}</h4>
-                            <span class="text-gold">${item.price} د.ع</span>
+                            <h4 class="font-bold text-white mb-0.5">${item.name}</h4>
+                            <span class="gold-text font-bold">${item.price} د.ع</span>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-white bg-cardbg px-2 py-0.5 rounded border border-gray-800">x${item.qty}</span>
-                            <button type="button" onclick="removeFromCart('${item.id}')" class="text-red-400 p-1"><i class="fas fa-trash"></i></button>
+                        <div class="flex items-center gap-2.5">
+                            <span class="font-black text-white bg-cardbg px-2.5 py-1 rounded-xl border border-gray-800">x${item.qty}</span>
+                            <button type="button" onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300 p-1.5"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>
                 `;
@@ -545,7 +557,7 @@
             if(window.cart.length === 0) return alert("السلة فارغة!");
 
             btn.disabled = true;
-            btn.innerText = "جاري الإرسال...";
+            btn.innerText = "جاري إرسال الطلب...";
 
             const total = window.cart.reduce((a, b) => a + (b.price * b.qty), 0);
 
@@ -561,7 +573,7 @@
 
                 activeOrderId = docRef.id;
 
-                confetti({ particleCount: 60, spread: 60, origin: { y: 0.8 } });
+                confetti({ particleCount: 80, spread: 70, origin: { y: 0.8 } });
 
                 window.cart = [];
                 window.updateCartUI();
@@ -574,10 +586,10 @@
                 window.updateTrackingBanner('pending');
 
             } catch (e) {
-                alert("حدث خطأ أثناء الإرسال. تأكد من اتصالك بالإنترنت.");
+                alert("حدث خطأ أثناء الإرسال. تأكد من الاتصال بالشبكة.");
             } finally {
                 btn.disabled = false;
-                btn.innerText = "إرسال الطلب للمطبخ 🚀";
+                btn.innerText = "تأكيد وإرسال الطلب للمطبخ 🚀";
             }
         };
 
