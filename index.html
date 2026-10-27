@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>   مقهى شباب الاعلام الرياضي| VIP Luxury Menu</title>
+    <title>ملتقى شباب الاعلام | VIP Smart Menu</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -31,17 +31,14 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #0A0A0A; color: #E5E5E5; -webkit-tap-highlight-color: transparent; }
         
-        /* Premium Gradients & Shimmer */
         .gold-gradient { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%); }
         .gold-gradient-dark { background: linear-gradient(135deg, #D4AF37 0%, #8A6508 100%); }
         .gold-text { background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #996515 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        /* Glassmorphism Ultra */
         .glass-header { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .glass-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
 
-        /* Animations */
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
             50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
@@ -55,7 +52,7 @@
 </head>
 <body class="bg-darkbg text-gray-100 min-h-screen pb-24 md:pb-12 select-none overflow-x-hidden">
 
-    <!-- Top Luxury Header -->
+    <!-- Header -->
     <header class="sticky top-0 z-40 glass-header px-4 py-3 shadow-2xl">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -63,8 +60,8 @@
                     <i class="fas fa-crown text-lg text-yellow-200"></i>
                 </div>
                 <div>
-                    <h1 id="cafe-title" class="text-base md:text-xl font-black gold-text cursor-pointer leading-tight tracking-wide">  مقهى شباب الاعلام الرياضي   </h1>
-                    <span class="text-[10px] text-gold/80 tracking-widest block font-bold">VIP DIGITAL EXPERIENCE</span>
+                    <h1 id="cafe-title" class="text-base md:text-xl font-black gold-text cursor-pointer leading-tight tracking-wide">ملتقى شباب الاعلام</h1>
+                    <span class="text-[10px] text-gold/80 tracking-widest block font-bold">VIP DIGITAL MENU</span>
                 </div>
             </div>
             
@@ -83,17 +80,19 @@
         <div class="mb-6 space-y-4 max-w-2xl mx-auto">
             <div class="relative">
                 <i class="fas fa-search absolute right-4 top-3.5 text-gold/60 text-sm"></i>
-                <input type="text" id="search-input" oninput="filterMenu()" placeholder="ابحث عن مشروبك الفاخر، الأركيلة، أو הوجبات..." class="w-full bg-cardbg/80 border border-gray-800/80 rounded-2xl py-3 pr-11 pl-4 text-xs md:text-sm text-white focus:border-gold outline-none transition placeholder-gray-500 shadow-2xl backdrop-blur-md">
+                <input type="text" id="search-input" oninput="filterMenu()" placeholder="ابحث عن عصير، أركيلة، وجبة، أو لبلبي..." class="w-full bg-cardbg/80 border border-gray-800/80 rounded-2xl py-3 pr-11 pl-4 text-xs md:text-sm text-white focus:border-gold outline-none transition placeholder-gray-500 shadow-2xl backdrop-blur-md">
             </div>
 
             <!-- Categories Horizontal Slider -->
             <div class="flex overflow-x-auto gap-2.5 py-1.5 no-scrollbar" id="categories-container">
                 <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition">✨ الكل</button>
-                <button type="button" onclick="setCategory('hot', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">☕ مشروبات ساخنة</button>
-                <button type="button" onclick="setCategory('cold', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹  عصائر طبيعية</button>
-                <button type="button" onclick="setCategory('pastry', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🥐 حلويات ومعجنات</button>
-                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍔 وجبات طعام </button>
-                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">💨 مشروبات غازية VIP</button>
+                <button type="button" onclick="setCategory('fresh_juices', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹 عصائر طبيعية</button>
+                <button type="button" onclick="setCategory('hot_drinks', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">☕ مشروبات ساخنة</button>
+                <button type="button" onclick="setCategory('soft_drinks', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🥤 مشروبات غازية</button>
+                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍔 وجبات طعام</button>
+                <button type="button" onclick="setCategory('lablabi_baqla', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍲 لبلبي وباقلاء</button>
+                <button type="button" onclick="setCategory('pastry_sweets', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🥐 معجنات وحلويات</button>
+                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">💨 أراكيل VIP</button>
             </div>
         </div>
 
@@ -103,7 +102,7 @@
         </div>
     </main>
 
-    <!-- Mobile Fixed Bottom Navigation Bar -->
+    <!-- Mobile Bottom Fixed Bar -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-cardbg/95 border-t border-gold/30 backdrop-blur-xl px-5 py-3 shadow-2xl flex items-center justify-between">
         <div>
             <span class="text-[9px] text-gray-400 block tracking-wider uppercase">الإجمالي الكلي</span>
@@ -126,7 +125,7 @@
         <p id="track-status-text" class="text-xs font-bold text-center text-white">جاري إرسال الطلب للمطبخ...</p>
     </div>
 
-    <!-- Mobile Bottom Drawer Modal for Cart -->
+    <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden z-50 flex items-end sm:items-center justify-center">
         <div class="bg-cardbg border-t sm:border border-gold/40 w-full sm:w-[440px] p-6 pb-20 sm:pb-6 rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl">
             <div class="flex justify-between items-center border-b border-gray-800/80 pb-3 mb-4">
@@ -151,7 +150,7 @@
 
                 <div class="space-y-2">
                     <input type="number" id="table-number" placeholder="أدخل رقم الطاولة *" class="w-full bg-darkbg border border-gray-700/80 text-white rounded-2xl py-3 px-4 text-center text-sm font-bold outline-none focus:border-gold transition">
-                    <input type="text" id="order-notes" placeholder="ملاحظات خاصة (مثلاً: سكر خفيف، بدون حامض...)" class="w-full bg-darkbg border border-gray-800/80 text-gray-300 rounded-2xl py-2.5 px-4 text-xs outline-none focus:border-gold transition">
+                    <input type="text" id="order-notes" placeholder="ملاحظات خاصة (مثلاً: بدون حامض، طرشي زيادة...)" class="w-full bg-darkbg border border-gray-800/80 text-gray-300 rounded-2xl py-2.5 px-4 text-xs outline-none focus:border-gold transition">
                 </div>
 
                 <button type="button" id="submit-btn" onclick="submitOrder(this)" class="w-full gold-gradient text-darkbg py-3.5 rounded-2xl font-black text-sm shadow-xl shadow-gold/20 active:scale-95 transition">
@@ -181,7 +180,7 @@
             </button>
         </div>
 
-        <!-- TAB 1: Live Orders & Dashboard -->
+        <!-- TAB 1: Live Orders -->
         <div id="tab-content-orders" class="admin-tab-content block">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                 <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl text-center">
@@ -222,18 +221,18 @@
                     <h3 class="font-bold mb-4 text-sm gold-text" id="form-title"><i class="fas fa-plus-circle ml-1"></i> إضافة منتج جديد للمنيو</h3>
                     <input type="hidden" id="edit-id">
                     <div class="space-y-4">
-                        <input type="text" id="item-name" placeholder="اسم المنتج" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
+                        <input type="text" id="item-name" placeholder="اسم المنتج (مثال: عصير رمان طبيعي)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
                         <textarea id="item-desc" placeholder="وصف المنتج والمكونات" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition" rows="3"></textarea>
                         <div class="grid grid-cols-2 gap-3">
                             <input type="number" id="item-price" placeholder="السعر (د.ع)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
-                            <select id="item-category" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
-                                <option value="hot">مشروبات ساخنة</option>
-                                <option value="cold">عصائر طبيعية </option>
-                                <option value="pastry">حلويات ومعجنات</option>
+                            <select id="item-category" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition cursor-pointer">
+                                <option value="fresh_juices">عصائر طبيعية</option>
+                                <option value="hot_drinks">مشروبات ساخنة</option>
+                                <option value="soft_drinks">مشروبات غازية</option>
                                 <option value="meals">وجبات طعام</option>
+                                <option value="lablabi_baqla">لبلبي وباقلاء</option>
+                                <option value="pastry_sweets">معجنات وحلويات</option>
                                 <option value="hookah">أراكيل VIP</option>
-                                <option value="cold">   مشروبات باردة</option>
-                                <option value="cold">مشروبات  غازية </option>
                             </select>
                         </div>
                         <button type="button" onclick="saveItem()" id="save-btn" class="w-full gold-gradient text-darkbg py-3.5 rounded-xl font-bold text-sm shadow-md shadow-gold/10 hover:opacity-95 transition">إضافة للقائمة</button>
@@ -250,7 +249,7 @@
         </div>
     </div>
 
-    <!-- Notification Sound for Orders -->
+    <!-- Notification Sound -->
     <audio id="order-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
 
     <!-- Firebase System Module -->
@@ -398,7 +397,7 @@
             if(confirm("حذف الطلب نهائياً؟")) await deleteDoc(doc(db, "orders", id));
         };
 
-        // Render Cards List for Customer View
+        // Render Menu Cards List
         window.renderMenu = () => {
             const grid = document.getElementById('menu-grid');
             const search = document.getElementById('search-input').value.toLowerCase();
