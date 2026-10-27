@@ -90,10 +90,10 @@
             <div class="flex overflow-x-auto gap-2.5 py-1.5 no-scrollbar" id="categories-container">
                 <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition">✨ الكل</button>
                 <button type="button" onclick="setCategory('hot', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">☕ مشروبات ساخنة</button>
-                <button type="button" onclick="setCategory('cold', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹 عصائر وبارد</button>
+                <button type="button" onclick="setCategory('cold', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹  عصائر طبيعية</button>
                 <button type="button" onclick="setCategory('pastry', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🥐 حلويات ومعجنات</button>
-                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍔 وجبات خاصة</button>
-                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">💨 أراكيل VIP</button>
+                <button type="button" onclick="setCategory('meals', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍔 وجبات طعام </button>
+                <button type="button" onclick="setCategory('hookah', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">💨 مشروبات غازية VIP</button>
             </div>
         </div>
 
@@ -228,10 +228,12 @@
                             <input type="number" id="item-price" placeholder="السعر (د.ع)" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
                             <select id="item-category" class="w-full bg-darkbg border border-gray-800 text-white p-3 rounded-xl text-xs md:text-sm outline-none focus:border-gold transition">
                                 <option value="hot">مشروبات ساخنة</option>
-                                <option value="cold">عصائر وبارد</option>
+                                <option value="cold">عصائر طبيعية </option>
                                 <option value="pastry">حلويات ومعجنات</option>
-                                <option value="meals">وجبات خاصة</option>
+                                <option value="meals">وجبات طعام</option>
                                 <option value="hookah">أراكيل VIP</option>
+                                <option value="cold">   مشروبات باردة</option>
+                                <option value="cold">مشروبات  غازية </option>
                             </select>
                         </div>
                         <button type="button" onclick="saveItem()" id="save-btn" class="w-full gold-gradient text-darkbg py-3.5 rounded-xl font-bold text-sm shadow-md shadow-gold/10 hover:opacity-95 transition">إضافة للقائمة</button>
