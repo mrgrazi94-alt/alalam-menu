@@ -339,9 +339,11 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
             const ordersList = document.getElementById('orders-list'); ordersList.innerHTML = '';
             let totalSales = 0; let pendingCount = 0;
             
-            // تشغيل الصوت عند وصول طلب جديد
-            if(previousOrdersCount !== -1 && snapshot.docs.length > previousOrdersCount) { 
-                try { document.getElementById('order-sound').play(); } catch(e){} 
+          // تشغيل الصوت عند وصول طلب جديد (للمدير والكاشير فقط)
+            if (currentUserRole === 'admin' || currentUserRole === 'cashier') {
+                if(previousOrdersCount !== -1 && snapshot.docs.length > previousOrdersCount) { 
+                    try { document.getElementById('order-sound').play(); } catch(e){} 
+                }
             }
             previousOrdersCount = snapshot.docs.length;
 
@@ -485,8 +487,10 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
             if(!table) return alert("يرجى كتابة رقم الطاولة!"); if(window.cart.length === 0) return alert("السلة فارغة!");
             btn.disabled = true; btn.innerText = "جاري إرسال الطلب..."; const total = window.cart.reduce((a, b) => a + (b.price * b.qty), 0);
             try {
-                const docRef = await addDoc(collection(db, "orders"), { table, items: window.cart, notes, total, status: 'pending', timestamp: serverTimestamp() });
-                activeOrderId = docRef.id; confetti({ particleCount: 80, spread: 70, origin: { y: 0.8 } });
+               const docRef = await addDoc(collection(db, "orders"), { table, items: window.cart, notes, total, status: 'pending', timestamp: serverTimestamp() });
+                activeOrderId = docRef.id; 
+                alert("تم الطلب بنجاح! 🚀"); // هذه الرسالة ستظهر للزبون فقط
+                confetti({ particleCount: 80, spread: 70, origin: { y: 0.8 } });
                 window.cart = []; window.updateCartUI(); document.getElementById('table-number').value = ''; document.getElementById('order-notes').value = ''; window.toggleCart(); document.getElementById('track-table').innerText = `طاولة #${table}`; document.getElementById('tracking-banner').classList.remove('hidden'); window.updateTrackingBanner('pending');
             } catch (e) { alert("حدث خطأ، تأكد من الشبكة."); } finally { btn.disabled = false; btn.innerText = "تأكيد وإرسال الطلب للمطبخ 🚀"; }
         };
