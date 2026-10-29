@@ -50,8 +50,21 @@
             50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
         }
         .glow-active { animation: pulseGlow 3s infinite ease-in-out; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+       /* تصميم شريط التمرير (السكرول) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: #0A0A0A; 
+}
+::-webkit-scrollbar-thumb {
+    background: #D4AF37; 
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #FFC000; 
+}
         .active-cat { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%) !important; color: #0A0A0A !important; font-weight: 900; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
         .sold-out { opacity: 0.5; filter: grayscale(100%); }
     </style>
