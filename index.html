@@ -332,13 +332,33 @@
             snapshot.forEach((docSnap) => { window.menuItems.push({ id: docSnap.id, ...docSnap.data() }); });
             window.renderMenu(); window.renderAdminItems(); document.getElementById('stat-items-count').innerText = window.menuItems.length;
         });
+const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc"));
+        let isInitialOrdersLoad = true; // لمنع طباعة الطلبات القديمة عند فتح الصفحة
 
-        const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc"));
         onSnapshot(ordersQuery, (snapshot) => {
             const ordersList = document.getElementById('orders-list'); ordersList.innerHTML = '';
             let totalSales = 0; let pendingCount = 0;
-            if(previousOrdersCount !== -1 && snapshot.docs.length > previousOrdersCount) { try { document.getElementById('order-sound').play(); } catch(e){} }
+            
+            // تشغيل الصوت عند وصول طلب جديد
+            if(previousOrdersCount !== -1 && snapshot.docs.length > previousOrdersCount) { 
+                try { document.getElementById('order-sound').play(); } catch(e){} 
+            }
             previousOrdersCount = snapshot.docs.length;
+
+            // كود الطباعة التلقائية عند الكاشير
+            snapshot.docChanges().forEach((change) => {
+                if (change.type === "added" && !isInitialOrdersLoad) {
+                    if (currentUserRole === 'admin' || currentUserRole === 'cashier') {
+                        const order = change.doc.data();
+                        const itemsEncoded = encodeURIComponent(JSON.stringify(order.items));
+                        // تأخير ثانية واحدة لضمان تشغيل صوت التنبيه أولاً
+                        setTimeout(() => {
+                            window.printOrder(order.table, itemsEncoded, order.total, order.notes || '');
+                        }, 1000);
+                    }
+                }
+            });
+            isInitialOrdersLoad = false;
 
             snapshot.forEach((docSnap) => {
                 const order = docSnap.data(); const id = docSnap.id;
