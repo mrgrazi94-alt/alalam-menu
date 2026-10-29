@@ -380,10 +380,32 @@
         window.deleteOrder = async (id) => { if(confirm("حذف الطلب نهائياً؟")) await deleteDoc(doc(db, "orders", id)); };
         window.toggleAvailable = async (id, currentStatus) => { await updateDoc(doc(db, "menu", id), { available: !currentStatus }); };
 
+        // نظام الفلترة الذكي الجديد لحل مشكلة التصنيفات
         window.renderMenu = () => {
-            const grid = document.getElementById('menu-grid'); const search = document.getElementById('search-input').value.toLowerCase(); grid.innerHTML = '';
-            const filtered = window.menuItems.filter(item => { return (window.currentCategory === 'all' || item.category === window.currentCategory) && (item.name.toLowerCase().includes(search) || (item.desc && item.desc.toLowerCase().includes(search))); });
-            if(filtered.length === 0) { grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 text-xs font-bold">لا توجد عناصر مطابقة</div>`; return; }
+            const grid = document.getElementById('menu-grid'); 
+            const search = document.getElementById('search-input').value.toLowerCase(); 
+            grid.innerHTML = '';
+            
+            const filtered = window.menuItems.filter(item => { 
+                let catMatch = false;
+                if (window.currentCategory === 'all') {
+                    catMatch = true;
+                } else if (item.category) {
+                    const dbCat = item.category.trim();
+                    const btnCat = window.currentCategory.trim();
+                    // يتحقق إذا الاسم القديم يشبه الجديد أو جزء منه
+                    if (dbCat === btnCat || btnCat.includes(dbCat) || dbCat.includes(btnCat)) {
+                        catMatch = true;
+                    }
+                }
+                return catMatch && (item.name.toLowerCase().includes(search) || (item.desc && item.desc.toLowerCase().includes(search))); 
+            });
+            
+            if(filtered.length === 0) { 
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 text-xs font-bold">لا توجد عناصر مطابقة في هذا التصنيف</div>`; 
+                return; 
+            }
+            
             filtered.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;'); const isAvail = item.available !== false; 
                 const btnHtml = isAvail ? `<button type="button" onclick="addToCart('${item.id}', '${safeName}', ${item.price})" class="gold-gradient text-darkbg w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center font-black text-xs shadow-lg shadow-gold/10 active:scale-90 transition hover:scale-105"><i class="fas fa-plus text-sm"></i></button>` : `<span class="bg-gray-800/80 text-gray-400 border border-gray-600 px-3 py-2 rounded-xl text-[10px] font-bold">نفدت</span>`;
@@ -451,7 +473,6 @@
             else if(status === 'ready') { progress.style.width = '100%'; text.innerText = '🎉 طلبك جاهز للتقديم!'; }
         };
 
-        // تسجيل Service Worker لتحويل الموقع لتطبيق
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').then(reg => {
