@@ -37,28 +37,28 @@
             }
         }
     </script>
-  <style>
-    body { font-family: 'Tajawal', sans-serif; background-color: #0A0A0A; color: #E5E5E5; -webkit-tap-highlight-color: transparent; }
-    .gold-gradient { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%); }
-    .gold-gradient-dark { background: linear-gradient(135deg, #D4AF37 0%, #8A6508 100%); }
-    .gold-text { background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #996515 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .glass-header { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
-    .glass-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-    .glass-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
-    @keyframes pulseGlow {
-        0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-        50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
-    }
-    .glow-active { animation: pulseGlow 3s infinite ease-in-out; }
-    .active-cat { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%) !important; color: #0A0A0A !important; font-weight: 900; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
-    .sold-out { opacity: 0.5; filter: grayscale(100%); }
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #0A0A0A; color: #E5E5E5; -webkit-tap-highlight-color: transparent; }
+        .gold-gradient { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%); }
+        .gold-gradient-dark { background: linear-gradient(135deg, #D4AF37 0%, #8A6508 100%); }
+        .gold-text { background: linear-gradient(135deg, #FFF1B0 0%, #D4AF37 50%, #996515 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-header { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .glass-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        }
+        .glow-active { animation: pulseGlow 3s infinite ease-in-out; }
+        .active-cat { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%) !important; color: #0A0A0A !important; font-weight: 900; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+        .sold-out { opacity: 0.5; filter: grayscale(100%); }
 
-    /* تصميم شريط التمرير (السكرول) الذهبي */
-    ::-webkit-scrollbar { width: 6px; height: 4px; }
-    ::-webkit-scrollbar-track { background: #0A0A0A; }
-    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #FFC000; }
-</style>
+        /* تصميم شريط التمرير (السكرول) الذهبي */
+        ::-webkit-scrollbar { width: 6px; height: 4px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FFC000; }
+    </style>
 </head>
 <body class="bg-darkbg text-gray-100 min-h-screen pb-24 md:pb-12 select-none overflow-x-hidden">
 
@@ -92,7 +92,7 @@
             </div>
 
             <!-- Categories -->
-            <div class="flex overflow-x-auto gap-2.5 py-1.5 no-scrollbar" id="categories-container">
+            <div class="flex overflow-x-auto gap-2.5 py-1.5" id="categories-container">
                 <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition">✨ الكل</button>
                 <button type="button" onclick="setCategory('عصائر طبيعية', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹 عصائر طبيعية</button>
                 <button type="button" onclick="setCategory('مشروبات ساخنة', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">☕ مشروبات ساخنة</button>
@@ -142,7 +142,7 @@
                 </div>
                 <button type="button" onclick="toggleCart()" class="text-gray-400 p-1.5 hover:text-white"><i class="fas fa-times text-lg"></i></button>
             </div>
-            <div id="cart-items" class="flex-1 overflow-y-auto space-y-2.5 pr-1 no-scrollbar mb-4"></div>
+            <div id="cart-items" class="flex-1 overflow-y-auto space-y-2.5 pr-1 mb-4"></div>
             <div class="border-t border-gray-800/80 pt-4 space-y-3.5">
                 <div class="flex justify-between text-base font-black text-white">
                     <span>مجموع الطلب:</span>
@@ -207,7 +207,7 @@
                         <i class="fas fa-lock"></i> إغلاق اليومية
                     </button>
                 </div>
-                <div id="orders-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-[65vh] overflow-y-auto pr-1 no-scrollbar pb-10"></div>
+                <div id="orders-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-[65vh] overflow-y-auto pr-1 pb-10"></div>
             </div>
         </div>
 
@@ -238,7 +238,7 @@
 
                 <div class="lg:col-span-7 bg-cardbg border border-gray-800 p-5 rounded-2xl">
                     <h4 class="font-bold text-sm text-gray-300 mb-4"><i class="fas fa-boxes ml-1"></i> المنتجات الحالية والمخزون</h4>
-                    <div id="admin-items-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto pr-1 no-scrollbar"></div>
+                    <div id="admin-items-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto pr-1"></div>
                 </div>
             </div>
         </div>
@@ -264,7 +264,8 @@
 
         window.menuItems = []; window.cart = []; window.currentCategory = 'all';
         let activeOrderId = null; let previousOrdersCount = -1;
-        let currentUserRole = '';
+        let currentUserRole = 'customer'; // تم تحديد الدور الافتراضي كزبون لضمان عدم تشغيل الصوت
+        let isInitialOrdersLoad = true;
 
         window.printOrder = (table, itemsJson, total, notes) => {
             const items = JSON.parse(decodeURIComponent(itemsJson));
@@ -314,7 +315,7 @@
             }
         });
 
-        window.exitAdmin = () => { document.getElementById('admin-view').classList.add('hidden'); document.getElementById('customer-view').classList.remove('hidden'); };
+        window.exitAdmin = () => { document.getElementById('admin-view').classList.add('hidden'); document.getElementById('customer-view').classList.remove('hidden'); currentUserRole = 'customer'; };
 
         window.closeDailyShift = async () => {
             const totalStr = document.getElementById('stat-total-sales').innerText;
@@ -332,28 +333,22 @@
             snapshot.forEach((docSnap) => { window.menuItems.push({ id: docSnap.id, ...docSnap.data() }); });
             window.renderMenu(); window.renderAdminItems(); document.getElementById('stat-items-count').innerText = window.menuItems.length;
         });
-const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc"));
-        let isInitialOrdersLoad = true; // لمنع طباعة الطلبات القديمة عند فتح الصفحة
 
+        const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc"));
         onSnapshot(ordersQuery, (snapshot) => {
             const ordersList = document.getElementById('orders-list'); ordersList.innerHTML = '';
             let totalSales = 0; let pendingCount = 0;
             
-          // تشغيل الصوت عند وصول طلب جديد (للمدير والكاشير فقط)
-            if (currentUserRole === 'admin' || currentUserRole === 'cashier') {
-                if(previousOrdersCount !== -1 && snapshot.docs.length > previousOrdersCount) { 
-                    try { document.getElementById('order-sound').play(); } catch(e){} 
-                }
-            }
-            previousOrdersCount = snapshot.docs.length;
-
-            // كود الطباعة التلقائية عند الكاشير
+            // الطباعة التلقائية وتشغيل الصوت (حصرياً لشاشة الكاشير أو المدير)
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added" && !isInitialOrdersLoad) {
                     if (currentUserRole === 'admin' || currentUserRole === 'cashier') {
+                        // تشغيل الصوت
+                        try { document.getElementById('order-sound').play(); } catch(e){} 
+                        
+                        // الطباعة التلقائية
                         const order = change.doc.data();
                         const itemsEncoded = encodeURIComponent(JSON.stringify(order.items));
-                        // تأخير ثانية واحدة لضمان تشغيل صوت التنبيه أولاً
                         setTimeout(() => {
                             window.printOrder(order.table, itemsEncoded, order.total, order.notes || '');
                         }, 1000);
@@ -361,6 +356,7 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
                 }
             });
             isInitialOrdersLoad = false;
+            previousOrdersCount = snapshot.docs.length;
 
             snapshot.forEach((docSnap) => {
                 const order = docSnap.data(); const id = docSnap.id;
@@ -406,7 +402,6 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
         window.deleteOrder = async (id) => { if(confirm("حذف الطلب نهائياً؟")) await deleteDoc(doc(db, "orders", id)); };
         window.toggleAvailable = async (id, currentStatus) => { await updateDoc(doc(db, "menu", id), { available: !currentStatus }); };
 
-        // نظام الفلترة الذكي الجديد لحل مشكلة التصنيفات
         window.renderMenu = () => {
             const grid = document.getElementById('menu-grid'); 
             const search = document.getElementById('search-input').value.toLowerCase(); 
@@ -419,7 +414,6 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
                 } else if (item.category) {
                     const dbCat = item.category.trim();
                     const btnCat = window.currentCategory.trim();
-                    // يتحقق إذا الاسم القديم يشبه الجديد أو جزء منه
                     if (dbCat === btnCat || btnCat.includes(dbCat) || dbCat.includes(btnCat)) {
                         catMatch = true;
                     }
@@ -482,18 +476,22 @@ const ordersQuery = query(collection(db, "orders"), orderBy("timestamp", "desc")
             window.cart.forEach(item => { cartDiv.innerHTML += `<div class="flex justify-between items-center bg-darkbg p-3 rounded-2xl border border-gray-800 text-xs shadow-inner"><div><h4 class="font-bold text-white mb-0.5">${item.name}</h4><span class="gold-text font-bold">${item.price} د.ع</span></div><div class="flex items-center gap-2.5"><span class="font-black text-white bg-cardbg px-2.5 py-1 rounded-xl border border-gray-800">x${item.qty}</span><button type="button" onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300 p-1.5"><i class="fas fa-trash"></i></button></div></div>`; });
         };
         window.toggleCart = () => { document.getElementById('cart-modal').classList.toggle('hidden'); };
+        
         window.submitOrder = async (btn) => {
             const table = document.getElementById('table-number').value; const notes = document.getElementById('order-notes').value;
             if(!table) return alert("يرجى كتابة رقم الطاولة!"); if(window.cart.length === 0) return alert("السلة فارغة!");
             btn.disabled = true; btn.innerText = "جاري إرسال الطلب..."; const total = window.cart.reduce((a, b) => a + (b.price * b.qty), 0);
             try {
-               const docRef = await addDoc(collection(db, "orders"), { table, items: window.cart, notes, total, status: 'pending', timestamp: serverTimestamp() });
+                const docRef = await addDoc(collection(db, "orders"), { table, items: window.cart, notes, total, status: 'pending', timestamp: serverTimestamp() });
                 activeOrderId = docRef.id; 
-                alert("تم الطلب بنجاح! 🚀"); // هذه الرسالة ستظهر للزبون فقط
+                
+                alert("تم الطلب بنجاح! 🚀"); // هذه الرسالة للزبون
                 confetti({ particleCount: 80, spread: 70, origin: { y: 0.8 } });
+                
                 window.cart = []; window.updateCartUI(); document.getElementById('table-number').value = ''; document.getElementById('order-notes').value = ''; window.toggleCart(); document.getElementById('track-table').innerText = `طاولة #${table}`; document.getElementById('tracking-banner').classList.remove('hidden'); window.updateTrackingBanner('pending');
             } catch (e) { alert("حدث خطأ، تأكد من الشبكة."); } finally { btn.disabled = false; btn.innerText = "تأكيد وإرسال الطلب للمطبخ 🚀"; }
         };
+        
         window.updateTrackingBanner = (status) => {
             const progress = document.getElementById('track-progress'); const text = document.getElementById('track-status-text');
             if(status === 'pending') { progress.style.width = '35%'; text.innerText = '⏳ تم الإرسال، بانتظار استلام المطبخ...'; } 
