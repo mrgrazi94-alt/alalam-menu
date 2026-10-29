@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vip-menu-v1';
+const CACHE_NAME = 'vip-menu-v2';
 const urlsToCache = [ './index.html', './manifest.json' ];
 
 self.addEventListener('install', event => {
