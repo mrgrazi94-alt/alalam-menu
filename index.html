@@ -36,7 +36,6 @@
         .glass-header { background: rgba(15, 15, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
         .glass-card { background: rgba(20, 20, 20, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card:hover { border-color: rgba(212, 175, 55, 0.4); box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
-
         @keyframes pulseGlow {
             0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
             50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
@@ -45,8 +44,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .active-cat { background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%) !important; color: #0A0A0A !important; font-weight: 900; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
-        
-        /* تأثيرات المنتج غير المتوفر */
         .sold-out { opacity: 0.5; filter: grayscale(100%); }
     </style>
 </head>
@@ -81,7 +78,7 @@
                 <input type="text" id="search-input" oninput="filterMenu()" placeholder="ابحث عن عصير، أركيلة، وجبة، أو لبلبي..." class="w-full bg-cardbg/80 border border-gray-800/80 rounded-2xl py-3 pr-11 pl-4 text-xs md:text-sm text-white focus:border-gold outline-none transition placeholder-gray-500 shadow-2xl backdrop-blur-md">
             </div>
 
-            <!-- Categories Horizontal Slider -->
+            <!-- Categories -->
             <div class="flex overflow-x-auto gap-2.5 py-1.5 no-scrollbar" id="categories-container">
                 <button type="button" onclick="setCategory('all', this)" class="cat-btn active-cat px-5 py-2.5 rounded-xl whitespace-nowrap text-xs shadow-lg transition">✨ الكل</button>
                 <button type="button" onclick="setCategory('عصائر طبيعية', this)" class="cat-btn bg-cardbg border border-gray-800 text-gray-300 px-5 py-2.5 rounded-xl whitespace-nowrap text-xs hover:border-gold transition">🍹 عصائر طبيعية</button>
@@ -94,10 +91,7 @@
             </div>
         </div>
 
-        <!-- Menu Dynamic Grid -->
-        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-5">
-            <!-- Items Injected Here -->
-        </div>
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 md:gap-5"></div>
     </main>
 
     <!-- Mobile Bottom Fixed Bar -->
@@ -154,8 +148,8 @@
     <div id="admin-view" class="hidden container mx-auto px-3 md:px-6 py-6 max-w-7xl">
         <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
             <div>
-                <h2 class="text-lg md:text-2xl font-black gold-text"><i class="fas fa-user-shield ml-2"></i>لوحة الإدارة والكاشير</h2>
-                <p class="text-xs text-gray-400">نظام إدارة الطلبات والمنيو الذكي</p>
+                <h2 class="text-lg md:text-2xl font-black gold-text" id="admin-header-title"><i class="fas fa-user-shield ml-2"></i>لوحة الإدارة</h2>
+                <p class="text-xs text-gray-400">نظام إدارة الطلبات</p>
             </div>
             <button type="button" onclick="exitAdmin()" class="bg-red-600/20 border border-red-500/40 text-red-400 px-4 py-2 rounded-xl text-xs font-bold hover:bg-red-600 hover:text-white transition">خروج</button>
         </div>
@@ -192,8 +186,14 @@
 
             <div class="bg-cardbg border border-gray-800 p-4 rounded-2xl">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="font-bold text-sm text-red-500 flex items-center gap-2"><i class="fas fa-fire animate-pulse"></i> الطلبات الحية</h3>
-                    <span class="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-3 py-1 rounded-full font-bold">مباشر Live</span>
+                    <div class="flex items-center gap-3">
+                        <h3 class="font-bold text-sm text-red-500 flex items-center gap-2"><i class="fas fa-fire animate-pulse"></i> الطلبات الحية</h3>
+                        <span class="text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 px-3 py-1 rounded-full font-bold">مباشر Live</span>
+                    </div>
+                    <!-- زر إغلاق اليومية (يظهر للمدير فقط) -->
+                    <button type="button" id="daily-close-btn" onclick="closeDailyShift()" class="bg-red-900/40 border border-red-500/50 text-red-300 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-red-600 hover:text-white transition flex items-center gap-2">
+                        <i class="fas fa-lock"></i> إغلاق اليومية
+                    </button>
                 </div>
                 <div id="orders-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-h-[65vh] overflow-y-auto pr-1 no-scrollbar pb-10"></div>
             </div>
@@ -236,7 +236,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc, serverTimestamp, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAxdwU_pkqhJ7ObywxY3F_6WBCDPi5UXWE",
@@ -252,8 +252,8 @@
 
         window.menuItems = []; window.cart = []; window.currentCategory = 'all';
         let activeOrderId = null; let previousOrdersCount = -1;
+        let currentUserRole = ''; // تحديد هل هو كاشير أو مدير
 
-        // نظام الطباعة الحرارية للكاشير
         window.printOrder = (table, itemsJson, total, notes) => {
             const items = JSON.parse(decodeURIComponent(itemsJson));
             const date = new Date().toLocaleString('ar-IQ');
@@ -285,18 +285,67 @@
             document.getElementById('tab-btn-' + tabName).className = "admin-tab-btn bg-gold/10 border border-gold/30 text-gold px-5 py-2.5 rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-gold/5";
         };
 
+        // نظام الصلاحيات المطور
         let clickCount = 0, clickTimer;
         document.getElementById('cafe-title').addEventListener('click', () => {
             clickCount++; clearTimeout(clickTimer); clickTimer = setTimeout(() => clickCount = 0, 800);
             if(clickCount === 3) {
-                let pass = prompt("رمز الدخول (0000):");
-                if(pass === "0000") { document.getElementById('customer-view').classList.add('hidden'); document.getElementById('admin-view').classList.remove('hidden'); } 
-                else { alert("كلمة المرور خاطئة!"); }
+                let pass = prompt("أدخل رمز الدخول (المدير: 0000 | الكاشير: 1111):");
+                
+                if(pass === "0000") { 
+                    // صلاحيات المدير (كل شيء)
+                    currentUserRole = 'admin';
+                    document.getElementById('admin-header-title').innerHTML = '<i class="fas fa-user-tie ml-2"></i>لوحة الإدارة (المدير)';
+                    document.getElementById('tab-btn-menu').classList.remove('hidden');
+                    document.getElementById('daily-close-btn').classList.remove('hidden');
+                    document.getElementById('customer-view').classList.add('hidden'); 
+                    document.getElementById('admin-view').classList.remove('hidden');
+                    window.switchAdminTab('orders');
+                } 
+                else if (pass === "1111") {
+                    // صلاحيات الكاشير (طلبات فقط)
+                    currentUserRole = 'cashier';
+                    document.getElementById('admin-header-title').innerHTML = '<i class="fas fa-desktop ml-2"></i>شاشة الكاشير';
+                    document.getElementById('tab-btn-menu').classList.add('hidden'); // إخفاء المنيو
+                    document.getElementById('daily-close-btn').classList.add('hidden'); // إخفاء إغلاق اليومية
+                    document.getElementById('customer-view').classList.add('hidden'); 
+                    document.getElementById('admin-view').classList.remove('hidden');
+                    window.switchAdminTab('orders');
+                }
+                else { 
+                    alert("كلمة المرور خاطئة!"); 
+                }
                 clickCount = 0;
             }
         });
 
         window.exitAdmin = () => { document.getElementById('admin-view').classList.add('hidden'); document.getElementById('customer-view').classList.remove('hidden'); };
+
+        // إغلاق اليومية وتصفير العدادات
+        window.closeDailyShift = async () => {
+            const totalStr = document.getElementById('stat-total-sales').innerText;
+            if(!confirm(`هل أنت متأكد من إغلاق اليومية وتصفير العدادات؟\nمبيعات اليوم: ${totalStr}\n(سيتم مسح طلبات الشاشة وبدء يوم جديد)`)) return;
+
+            try {
+                // حفظ التقرير
+                await addDoc(collection(db, "daily_reports"), {
+                    date: new Date().toLocaleString('ar-IQ'),
+                    totalSales: document.getElementById('stat-total-sales').innerText,
+                    totalOrders: document.getElementById('stat-orders-count').innerText,
+                    timestamp: serverTimestamp()
+                });
+
+                // مسح الطلبات الحالية لتصفير الشاشة
+                const snapshot = await getDocs(ordersQuery);
+                snapshot.forEach(async (docSnap) => {
+                    await deleteDoc(doc(db, "orders", docSnap.id));
+                });
+                
+                alert("✅ تم إغلاق اليومية بنجاح! الشاشة جاهزة لطلبات يوم جديد.");
+            } catch(e) {
+                alert("حدث خطأ أثناء الإغلاق، تأكد من الاتصال بالإنترنت.");
+            }
+        };
 
         onSnapshot(collection(db, "menu"), (snapshot) => {
             window.menuItems = [];
@@ -363,7 +412,6 @@
         window.updateOrderStatus = async (id, status) => { await updateDoc(doc(db, "orders", id), { status }); };
         window.deleteOrder = async (id) => { if(confirm("حذف الطلب نهائياً؟")) await deleteDoc(doc(db, "orders", id)); };
 
-        // تحديث حالة المنتج (متوفر / نفدت الكمية)
         window.toggleAvailable = async (id, currentStatus) => {
             await updateDoc(doc(db, "menu", id), { available: !currentStatus });
         };
@@ -381,7 +429,7 @@
 
             filtered.forEach(item => {
                 const safeName = item.name.replace(/'/g, "\\'").replace(/"/g, '&quot;');
-                const isAvail = item.available !== false; // إذا ماكو قيمة يعني متوفر
+                const isAvail = item.available !== false; 
                 const cardClass = isAvail ? 'glass-card' : 'glass-card sold-out';
                 const btnHtml = isAvail 
                     ? `<button type="button" onclick="addToCart('${item.id}', '${safeName}', ${item.price})" class="gold-gradient text-darkbg w-10 h-10 md:w-11 md:h-11 rounded-2xl flex items-center justify-center font-black text-xs shadow-lg shadow-gold/10 active:scale-90 transition hover:scale-105"><i class="fas fa-plus text-sm"></i></button>`
